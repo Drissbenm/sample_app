@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def titre
     base_titre = "Simple App du Tutoriel Ruby on Rails"
     if @titre.nil?
