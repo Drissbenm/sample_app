@@ -1,5 +1,8 @@
 module ApplicationHelper
   
+  def logo
+    image_tag("rails.png", :alt => "Application exemple", :class => "round")
+  end
   def titre
     base_titre = "Simple App du Tutoriel Ruby on Rails"
     if @titre.nil?
