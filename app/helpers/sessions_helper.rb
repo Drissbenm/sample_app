@@ -24,6 +24,7 @@ module SessionsHelper
   end
   
   def refuser_access
+    charger_location
     redirect_to signin_path, :notice => "Merci de vous identifier."
   end
   
@@ -31,7 +32,20 @@ module SessionsHelper
     user==current_user
   end
   
+  def revenir_arriere_ou(default)
+    redirect_to(session[:return_to] || default)
+    effacer_retour_a
+  end
+  
   private
+  
+  def effacer_retour_a
+    session[:return_to] = nil
+  end
+  
+  def charger_location
+    session[:return_to] = request.fullpath
+  end
   
   def user_from_remember_token
     User.authenticate_with_salt(*remember_token)
