@@ -1,16 +1,9 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
-    <% if @user.errors.count == 1 %>
-   <h2> <%= pluralize(@user.errors.count, "erreur") %> 
-        a empêché l'enregistrement de votre inscription</h2>
-        <p>Merci de corriger ce champ :</p>
-        <% else %>
-      <h2>  <%= pluralize(@user.errors.count, "erreurs") %>
-        ont empêché l'enregistrement de votre inscription</h2>
-      <p>Merci de corriger ces champs :</p>
-    <%end%>
-        
-    
+    <h2> <%= pluralize(@user.errors.count, "erreur") %> 
+        problème içi : <%= object.class.to_s.underscore.humanize.downcase %>
+        </h2>
+        <p>Merci de corriger avant d'enregistrer :</p>
     <ul>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
