@@ -8,6 +8,7 @@
     </td>
     <td class="sidebar round">
       <strong>Nom</strong> <%= @user.nom %><br />
+      <strong>Age</strong> <%= age_utilisateur @user  %><br />
       <strong>URL</strong>  <%= link_to user_path(@user), @user %>
     </td>
   </tr>

@@ -7,7 +7,8 @@ namespace :db do
    admin = User.create!(:nom => "Utilisateur exemple",
                  :email => "example@railstutorial.org",
                  :password => "foobar",
-                 :password_confirmation => "foobar")
+                 :password_confirmation => "foobar", 
+                        :age => "17/05/1985")
    admin.toggle!(:admin) 
    99.times do |n|
       nom  = Faker::Name.name
@@ -16,7 +17,8 @@ namespace :db do
       User.create!(:nom => nom,
                    :email => email,
                    :password => password,
-                   :password_confirmation => password)
+                   :password_confirmation => password,
+                   :age => admin.age)
     end
   end
 end

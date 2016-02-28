@@ -23,6 +23,11 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("title", :content => @user.nom)
     end
+    
+    it "devrait avoir un age" do
+      get :show, :id => @user
+      response.should have_selector("strong", :content => "Age")
+    end
 
     it "devrait inclure le nom de l'utilisateur" do
       get :show, :id => @user
