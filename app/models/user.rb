@@ -12,10 +12,12 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :nom, :email, :password, :password_confirmation, :age
+  attr_accessible :nom, :email, :password, :password_confirmation, :age,
+      :nbr_film, :livre
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :nom, :presence => true,
 		  :length => { :maximum => 50 }
+  validates :nbr_film, :numericality => { :greater_than_or_equal_to => 0 }
   validates :email, :presence => true,
 		      :format => {:with => email_regex },
 		      :uniqueness =>  { :case_sensitive => false }

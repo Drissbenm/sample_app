@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index ,:edit, :update]
+  before_filter :authenticate, :only => [:index ,:edit, :update, :update_nbr_films]
   before_filter :corriger_utilisateur, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
   def new
@@ -25,6 +25,33 @@ class UsersController < ApplicationController
       render 'new'
       end
   end
+  def update_livres
+    rep = params[:rep]
+    r=false
+    if rep=="1" 
+	r=true
+    end 
+    if User.where( id: current_user.id ).update_all( livre: r )
+      flash[:success] = "Bien "+rep
+      redirect_to current_user
+    else 
+      flash[:error] = "Erreur: le serveur a rencontrer un probleme"
+      redirect_to current_user
+    end
+  end
+  def update_nbr_films
+    nbr = params[:nbr_film]
+    if User.where( id: current_user.id ).update_all( nbr_film: nbr )
+      flash[:success] = "Nombre de films vu par semaine ajouter"
+      redirect_to current_user
+    else 
+      flash[:error] = "Erreur: le serveur a rencontrer un probleme"
+      redirect_to current_user
+    end
+  end
+  
+
+  
   def edit
     @user = User.find(params[:id])
     @titre = "Modification profil"

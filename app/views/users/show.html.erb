@@ -1,3 +1,12 @@
+ <% if @user.livre.nil? %>
+    <div id="myDialog" class="flora" title="Sondage">
+      <p>Voulez vous lire plus de livres ?</p>
+    </div>
+      	<%= form_tag({:action => 'update_livres', :user_id => @user.id}, :name => "form_livres"  ,:id => "ok") do %>
+	      <%= number_field_tag :rep, in: 1..50, step: 1 %>
+	<% end %>
+<script> document.getElementById('ok').style.display='none'; </script>
+ <% end %> 
 <table class="profile" summary="Information profil">
   <tr>
     <td class="main">
@@ -12,4 +21,20 @@
       <strong>URL</strong>  <%= link_to user_path(@user), @user %>
     </td>
   </tr>
-</table>
+  
+  <% if @user.nbr_film.nil? %>
+  <tr>
+    <td class="main">
+	<%= form_tag({:action => 'update_nbr_films', :user_id => @user.id}, :id => "edit_nbr") do %>
+	    <div class="field">
+	      <%= label_tag "Nombre de films vu par semaine" %><br />
+	      <%= number_field_tag :nbr_film, in: 1..50, step: 1 %>
+	    </div>
+	    <div class="actions">
+	      <%= submit_tag "Valider" %>
+	    </div>
+	<% end %>
+    </td>
+    <% end %>
+  </tr>
+  </table>

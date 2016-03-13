@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160227164518) do
+ActiveRecord::Schema.define(:version => 20160228172935) do
 
   create_table "users", :force => true do |t|
     t.string   "nom"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20160227164518) do
     t.string   "salt"
     t.boolean  "admin",              :default => false
     t.datetime "age"
+    t.integer  "nbr_film"
+    t.boolean  "livre"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
