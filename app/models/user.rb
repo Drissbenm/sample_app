@@ -13,7 +13,7 @@ require 'digest'
 class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :nom, :email, :password, :password_confirmation, :age,
-      :nbr_film, :livre
+      :nbr_film, :livre, :name, :attachment
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :nom, :presence => true,
 		  :length => { :maximum => 50 }
@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
 			:confirmation => true,
 			:length => { :within => 6..40 }
   before_save :encrypt_password
+  
+  mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
+  validates :name, presence: true # Make sure the owner's name is present.
   
   def has_password?(password_soumis)
     encrypted_password == encrypt(password_soumis)

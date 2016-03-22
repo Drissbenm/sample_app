@@ -5,6 +5,7 @@ SampleApp::Application.routes.draw do
   resources :users do 
     collection {post:update_nbr_films} 
     collection {post:update_livres}
+    collection {post:upload_cv}
   end
   
   

@@ -21,7 +21,21 @@
       <strong>URL</strong>  <%= link_to user_path(@user), @user %>
     </td>
   </tr>
-  
+  <tr>
+  <td class="main">
+  <%= form_tag({:action => 'upload_cv', :id => "add_cv", :user_id => @user.id}, :multipart => true) do %>
+	    <div class="field">
+	      <%= label_tag "Titre du ficher" %><br />
+	      <%= text_field_tag :name %><br />
+	      <%= label_tag "Téléchargez votre cv :" %><br />
+	      <%= file_field_tag :attachment %><br />
+	    </div>
+	    <div class="actions">
+	      <%= submit_tag "Ajouter" %>
+	    </div>
+	<% end %>
+  </td>
+  </tr>
   <% if @user.nbr_film.nil? %>
   <tr>
     <td class="main">

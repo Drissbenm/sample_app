@@ -1,6 +1,9 @@
 <li>
       <%= gravatar_for user, :size => 30 %>
       <%= link_to user.nom, user %>
+      <% if !user.name.nil? %>
+      <%=link_to "Consulter cv", root_path+"cv/"+user.name, {target: '_blank'} %>
+      <% end %>
       <% if current_user.admin? %>
 	|  <%= link_to "supprimer", user, :method => :delete, 
 	:confirm => "Etes-vous sûr de vouloir supprimer cet utilisateur ?",

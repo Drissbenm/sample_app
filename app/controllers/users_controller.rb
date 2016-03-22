@@ -50,7 +50,22 @@ class UsersController < ApplicationController
     end
   end
   
-
+  def upload_cv
+    @user = User.find(params[:user_id])
+    file = params[:attachment]
+    if !file.nil? && !params[:name].nil?
+      filename=params[:name]+".pdf"
+      File.open(Rails.root.join('public', 'cv', filename), 'wb') do |f| 
+	  f.write(file.read)
+      end
+      User.where( id: @user.id ).update_all( name: filename )
+      flash[:success] = "Votre cv a ete ajoute"
+      redirect_to current_user
+    else 
+      flash[:error] = "Erreur: le serveur a rencontrer un probleme"
+      redirect_to current_user
+    end   
+  end
   
   def edit
     @user = User.find(params[:id])

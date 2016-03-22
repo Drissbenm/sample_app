@@ -4,5 +4,6 @@
   C'est la page d'accuile pour l'application exemple du
   <a href="http://railstutorial.org/">Tutoriel Ruby on Rails</a>.
 </p>
-
+<% if !signed_in? %>
 <%= link_to "S'inscrire !", signup_path, :class => "signup_button round" %>
+<% end %>
